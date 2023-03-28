@@ -1,0 +1,13 @@
+import java.io.*;
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String s = br.readLine();
+        StringBuilder sb = new StringBuilder(s); // StringBuilder사용 reverse()함수 사용하기 위해
+        if (s.equals(sb.reverse().toString())) { // 입력받은 s의 값과 뒤집은 sb의 값 비교해서 맞으면 1 아니면 0출력
+            System.out.print(1);
+        } else {
+            System.out.print(0);
+        }
+    }
+}
