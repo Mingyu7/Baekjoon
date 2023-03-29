@@ -1,0 +1,44 @@
+import java.util.*;
+import java.io.*;
+public class Main {
+    public static void main(String args[]) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        int num = Integer.parseInt(br.readLine());
+        int list[] = new int[num];
+        for(int i=0; i<num; i++)
+            list[i] = Integer.parseInt(br.readLine());
+        Arrays.sort(list);
+        bw.write(average(list)+"\n");
+        bw.write(mid(list)+"\n");
+        bw.write(frequence(list)+"\n");
+        bw.write(range(list)+"\n");
+        bw.close();
+    }
+    static int average(int[] list) { // 평균
+        double sum = 0;
+        for(int i=0; i<list.length; i++)
+            sum += list[i];
+        return (int)Math.round(sum/list.length);
+    }
+    static int mid(int[] list) { // 중앙값
+        return list[list.length/2];
+    }
+    static int frequence(int[] list) { // 최빈값
+        int cnt[] = new int[8001];
+        int max = 0;
+        for(int i=0; i<list.length; i++) {
+            cnt[list[i]+4000]++;
+            max = Math.max(cnt[list[i]+4000], max);
+        }
+        ArrayList<Integer> max_idx = new ArrayList<>();
+        for(int i=0; i<=8000; i++)
+            if(max == cnt[i])
+                max_idx.add(i-4000);
+        return max_idx.size()>1? max_idx.get(1) : max_idx.get(0);
+
+    }
+    static int range(int[] list) { // 범위
+        return list[list.length-1] - list[0];
+    }
+}
